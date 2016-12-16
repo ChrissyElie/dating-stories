@@ -1,0 +1,26 @@
+body {
+  padding: 0; margin: 0;
+  background-color: black;
+}
+
+video {
+	height: 100% !important;
+	width: auto !important;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+#title {
+	font-family: monospace;
+	background-color: #2f4f4f;
+	color: #FFFFFF;
+	font-size: 18pt;
+	padding: 10px;
+	width: 40%;
+	float: right;
+	text-align: center;
+	right: 5%;
+    top: 10%;
+    position: absolute;
+}
