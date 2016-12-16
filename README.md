@@ -1,5 +1,9 @@
 # Dating Stories
 
+This is a project that I created for my final Intro for Computational Media and Physical Computing class at ITP- NYU.
+Dating Stories: An Interactive film is a comedic, 'choose your own adventure’-style narrative directed towards adults. The lead actress in the film, Christine, has two choices from her search on a popular dating app: will she go on a date with Douglas or Jared? Ultimately the individual observer gets to decide. By using the physical, interactive board, the observer has the ability to choose what path the date goes on in the film by moving the wooden piece from node to node. Their choices and full narrative are executed on the screen in p5.js.
+
+
 ## Setup
 
 ### Install node
