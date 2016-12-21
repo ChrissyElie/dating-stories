@@ -20,26 +20,26 @@ var song;
 var currentVideo;
 var vids = [];
 var currentNode = 0;
-var text;
+var title;
+
 
 function preload() {
   song = loadSound('jazzloop.mp3');
 }
 
-
 function setup() {
   // the videos in this demo are not in the canvas
   // so don't have one
   song.loop();
-  song.setVolume(0.05);
-  text = createElement('h1', 'Dating Stories: An Interactive Film');
-  text.id('title');
-  // text.position(height/2, width/2);
-  // text.style("font-family", "monospace");
-  // text.style("background-color", "#2f4f4f");
-  // text.style("color", "#FFFFFF");
-  // text.style("font-size", "18pt");
-  // text.style("padding", "10px");
+  song.setVolume(0.1);
+  title = createElement('h1', 'Dating Stories: An Interactive Film');
+  title.id('title');
+  // title.position(height/2, width/2);
+  // title.style("font-family", "monospace");
+  // title.style("background-color", "#2f4f4f");
+  // title.style("color", "#FFFFFF");
+  // title.style("font-size", "18pt");
+  // title.style("padding", "10px");
 
 
   noCanvas();
@@ -47,7 +47,7 @@ function setup() {
   serial.on('list', printList); // callback function for serialport list event
   serial.on('data', serialEvent); // callback for new data coming in  
   serial.list(); // list the serial ports
-  serial.open("/dev/cu.usbmodem1411"); // open a port
+  serial.open("/dev/cu.usbmodem1421"); // open a port
   vidloop = createVideo('assets/vidloop.mp4')
   vid0  = createVideo('assets/vid0.mp4');
   vid0.hide();
@@ -125,7 +125,7 @@ function toggleVid() {
 }
  
 function switchVideo(newVideo) {
-  // TODO This is where the text would be hidden .hide()
+  // TODO This is where the title would be hidden .hide()
   currentVideo.stop();
   currentVideo.hide();
   currentVideo = newVideo;
@@ -165,7 +165,7 @@ function printList(portList) {
   }
 }
 
-function serialEvent() {
+function serialEvent(inString) {
   var inString = serial.readLine();
   if (inString.length > 0) {
 
@@ -173,9 +173,12 @@ function serialEvent() {
     console.log(vidNumber)
     var newVideo = vids[vidNumber];
     currentNode = vidNumber;
-    text.hide();
+    title.hide();
     console.log(newVideo)
     switchVideo(newVideo);
+    mixpanel.track("Video play", {
+      video: vidNumber
+    });
    }
 }
 
@@ -186,11 +189,11 @@ function videoEnded() {
     currentNode = 0;
     //switchVideo(vid0);
     switchVideo(vidloop);
-    text.show();
+    title.show();
     currentVideo.loop();
 
   } else {
-    // TODO this is where the text would be shown .show()
+    // TODO this is where the title would be shown .show()
     serial.write(0);
   }
 }
