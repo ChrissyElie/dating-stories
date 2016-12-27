@@ -65,3 +65,9 @@ q: The server says that something is already using the port
 
 a: kill all the node processes on your system with ```killall node```
 
+## License
+
+GPL-2.0
+
+See LICENSE for the full license text
+
